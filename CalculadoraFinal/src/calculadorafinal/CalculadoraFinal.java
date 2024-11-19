@@ -7,9 +7,14 @@ package calculadorafinal;
 import java.util.Scanner;
 
 public class CalculadoraFinal {
-
+    /*
+    *Aquí aparecen palabras reservadas
+    *como "public", "static" o "void"
+    */
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // declaramos e inicializamos la variable a,b y resultado
         double a = 0, b = 0, resultado = 0;
         String opciones;
 
@@ -22,11 +27,12 @@ public class CalculadoraFinal {
         System.out.println("acumulador, Fibonacci, Mayor");
         System.out.println("SALIR -> pulse s");
         System.out.println();
-
+        //Ejemplo bucle do-while
         do {
             System.out.print("¿Qué deseas calcular? ");
             opciones = sc.nextLine();
 
+            // Ejemplo de condicional doble
             if (opciones.equalsIgnoreCase("s")) {
                 System.out.println("fin");
                 break;
@@ -43,7 +49,7 @@ public class CalculadoraFinal {
                 a = sc.nextDouble();
                 sc.nextLine(); // Consumir salto de línea
             }
-
+            // Ejemplo de uso de switch como expresión
             switch (opciones) {
                 case "+" -> resultado = suma(a, b);
                 case "-" -> resultado = resta(a, b);
@@ -60,13 +66,20 @@ public class CalculadoraFinal {
                 case "arcotang" -> resultado = Math.atan(a);
                 case "redondeo" -> resultado = Math.round(a);
                 case "acumulador" -> resultado = acumulador(a);
-                case "Fibonacci" -> {
-                    hastaFibonacci((int) a);
-                    resultado = 0;
+                case "primo" -> {
+                    // conversión de tipo explícita
+                    primos((int)a);
                 }
-                case "Mayor" -> {
-                    boolean esMayor = esMayor(a, b);
-                    System.out.println("Es mayor: " + esMayor);
+                case "Fibonacci" -> {
+                    // Ejemplo de llamada a la función
+                    hastaFibonacci((int) a);
+                    
+                }
+                case "Positivo" -> {
+                    System.out.println(esPositivo(a));
+                }
+                case "Mayor" -> {        
+                    System.out.println("Es mayor: " + esMayor(a,b));
                     resultado = 0;
                 }
                 default -> resultado = 0;
@@ -77,15 +90,16 @@ public class CalculadoraFinal {
             }
 
         } while (!opciones.equalsIgnoreCase("s"));
-
-        sc.close();
     }
 
     public static double suma(double a, double b) {
+        // ejemplo de operadores aritméticos
         return a + b;
     }
 
+    //Ejemplo de función
     public static double resta(double a, double b) {
+        //ejemlo de return en una función
         return a - b;
     }
 
@@ -94,6 +108,7 @@ public class CalculadoraFinal {
     }
 
     public static double division(double a, double b) {
+        // ejemplo de operadores lógicos
         if (a != 0 && b != 0) {
             return a / b;
         }
@@ -122,7 +137,28 @@ public class CalculadoraFinal {
         System.out.println();
     }
 
-    public static boolean esMayor(double a, double b) {
-        return a > b;
+    public static double esMayor(double a, double b) {
+        return a > b?a:b;
+    }
+    
+    public static boolean esPositivo(double a) {
+        return a>=0;
+    }
+    
+    public static void primos(int x) {
+        int num = x;
+        if (x > 2) {
+
+            for (int i = 2; i * i <= num; i++) {
+                if (num % i == 0) {
+                    // Ejemplo de salida anticipada break
+                    System.out.println("no es primo");
+                    break;
+                } else {
+                    System.out.println("es primo");
+                    break;
+                }
+            }
+        }
     }
 }
